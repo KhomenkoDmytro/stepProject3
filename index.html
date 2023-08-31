@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./styles/reset.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
+
+    <title>Document</title>
+  </head>
+
+  <body>
+
+    <header id="header" class="header">
+      <div class="logo">
+        <a href="#" class="logo__text-link">
+          <p class="logo__text">
+            <span class="logo__text-marked">Сервіс запису </span>до лікарів
+          </p>
+        </a>
+      </div>
+
+      <button class="calllogin" type="button">Увійти</button>
+    </header>
+
+
+    <div class="filtercontainer">
+      <form class="filtration">
+        <input type="text" name="search" id="search" placeholder="Пошук" />
+
+        <select name="filterStatus" id="filterStatus">
+          <option value="">Статус</option>
+          <option value="Open">Open</option>
+          <option value="Done">Done</option>
+        </select>
+
+        <select name="filterUrgency" id="filterUrgency">
+          <option value="">Терміновість</option>
+          <option value="Висока">Висока</option>
+          <option value="Нормальна">Нормальна</option>
+          <option value="Низька">Низька</option>
+        </select>
+      </form>
+
+      <button class="filtersub">Пошук</button>
+    </div>
+
+
+    <div class="root" id="root"></div>
+
+
+    <div
+      class="modal fade"
+      id="modalSelectDoctor"
+      aria-hidden="true"
+      aria-labelledby="modalSelectDoctorLabel"
+      tabindex="-1"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalSelectDoctorLabel">
+              ОБЕРІТЬ ЛІКАРЯ
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <label>Лікар:</label><br />
+            <select name="select-doctor" id="select-doctor">
+              <option value="" disabled selected>Оберіть лікаря</option>
+              <option value="Терапевт">Терапевт</option>
+              <option value="Кардіолог">Кардіолог</option>
+              <option value="Стоматолог">Стоматолог</option>
+            </select>
+            <div></div>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-primary"
+              data-bs-target="#modalCreateCard"
+              data-bs-toggle="modal"
+              data-bs-dismiss="modal"
+              disabled
+            >
+              Перейти до створення картки
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modalCreateCard"
+      aria-hidden="true"
+      aria-labelledby="modalCreateCardLabel"
+      tabindex="-1"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalCreateCardLabel">Картка</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-primary"
+              data-bs-target="#modalSelectDoctor"
+              data-bs-toggle="modal"
+              data-bs-dismiss="modal"
+            >
+              Повернутися назад
+            </button>
+            <button
+              class="btn btn-primary create-card"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Створити картку
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div
+      class="modal fade"
+      id="modalChangeCard"
+      aria-hidden="true"
+      aria-labelledby="modalChangeCardLabel"
+      tabindex="-1"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalChangeCardLabel">ЗМІНА КАРТКИ</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <label>Лікар:</label><br />
+            <select name="change-doctor" id="change-doctor">
+              <option value="Терапевт">Терапевт</option>
+              <option value="Кардіолог">Кардіолог</option>
+              <option value="Стоматолог">Стоматолог</option>
+            </select>
+            <div></div>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-primary"
+              data-bs-target="#modalCreateCard2"
+              data-bs-toggle="modal"
+              data-bs-dismiss="modal"
+            >
+              Перейти до вигляду нової картки
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modalCreateCard2"
+      aria-hidden="true"
+      aria-labelledby="modalCreateCard2Label"
+      tabindex="-1"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalCreateCard2Label">Картка</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body"></div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-primary"
+              data-bs-target="#modalChangeCard"
+              data-bs-toggle="modal"
+              data-bs-dismiss="modal"
+            >
+              Повернутися назад
+            </button>
+            <button
+              class="btn btn-primary change-card"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Оновити картку
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./scripts/script.js"></script>
+  </body>
+</html>
